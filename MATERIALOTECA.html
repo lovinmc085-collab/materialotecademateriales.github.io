@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Materialoteca</title>
+  <style>
+    :root{
+      --bg:#f5f6f8; /* fondo neutro */
+      --card:#ffffff;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --glass: rgba(255,255,255,0.6);
+      --shadow: 0 6px 18px rgba(20,20,30,0.06);
+      --radius:12px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      min-height:100%;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)),
+        var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px;
+      color:#111827;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .container{
+      width:100%;
+      max-width:960px;
+      background:linear-gradient(180deg,var(--glass), rgba(255,255,255,0.9));
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(16,24,40,0.04);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      margin-bottom:18px;
+    }
+    h1{
+      margin:0;
+      font-size:28px;
+      letter-spacing:-0.02em;
+    }
+    p.lead{
+      margin:6px 0 0 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+
+    .controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .btn{
+      background:var(--accent);
+      color:white;
+      border:none;
+      padding:9px 12px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      font-size:14px;
+      box-shadow:0 6px 12px rgba(37,99,235,0.12);
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--accent);
+      border:1px solid rgba(37,99,235,0.14);
+      box-shadow:none;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-start;
+      justify-content:center;
+      transition:transform .14s ease, box-shadow .14s ease;
+      border:1px solid rgba(16,24,40,0.03);
+    }
+    .card:hover{ transform: translateY(-6px); box-shadow: 0 16px 36px rgba(15,20,40,0.06); }
+    .card h3{ margin:0; font-size:16px; }
+    .card a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+    }
+    .card small{ color:var(--muted); }
+
+    footer{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* small screens adjustments */
+    @media (max-width:420px){
+      h1{ font-size:22px }
+      .btn{ padding:8px 10px; font-size:13px }
+    }
+
+    input[type="file"]{ display:none; }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <div>
+        <h1>Materialoteca</h1>
+        <p class="lead"> Selecciona el catalogo de materiales segun su categoria.
+            
+        </p>
+      </div>
+
+      <div class="controls">
+        <!-- Selector oculto de archivos: permite seleccionar hasta 12 archivos y asignarlos a los enlaces -->
+    </header>
+
+    <section class="grid" aria-label="Listado de archivos">
+      <div class="card">
+        <h3>CONCRETO</h3>
+       <a href=concerto1.pdf> CLIC AQUI </a>
+      </div>
+
+      <div class="card">
+        <h3>CONCRETO</h3>
+        <a id="link-2" href=concreto2.pdf>CLIC AQUI</a>
+      </div>
+
+      <div class="card">
+        <h3>CONCRETO</h3>
+        <a id="link-3" href=concreto3.pdf>CLICK AQUI</a>
+       
+      </div>
+
+      <div class="card">
+        <h3>CONCRETO</h3>
+        <a id="link-4" href=concreto4.pdf>CLICK AQUI</a>
+        
+      </div>
+
+      <div class="card">
+        <h3>CONCRETO</h3>
+        <a id="link-5" href=concreto5.pdf>CLICK AQUI</a>
+      </div>
+
+      <div class="card">
+        <h3>CONCRETOS</h3>
+        <a id="link-6" href=concretos.pdf>CLICK AQUI</a>
+      </div>
+
+      <div class="card">
+        <h3>CONCRETOS</h3>
+        <a id="link-7" href=concretos2.pdf>CLICK AQUI</a>
+      </div>
+
+      <div class="card">
+        <h3>PASTAS</h3>
+        <a id="link-8" href=pastas.pdf>CLICK AQUI</a>
+      </div>
+
+      <div class="card">
+        <h3>IMPERMEABILIZANTES</h3>
+        <a id="link-9" href=impermeabilizantes.pdf>CLICK AQUI</a>
+      </div>
+
+      <div class="card">
+        <h3>METALES</h3>
+        <a id="link-10" href=metales.pdf>CLICK AQUI</a>
+      </div>
+
+      <div class="card">
+        <h3>AGLOMERADOS</h3>
+        <a id="link-11" href=aglomerantes.pdf>CLICK AQUI</a>
+      </div>
+
+      <div class="card">
+        <h3>SINTETICOS</h3>
+        <a id="link-12" href=sinteticos.pdf>CLICK AQUI</a>
+      </div>
+
+         <div class="card">
+        <h3>ORGANICOS</h3>
+        <a id="link-9" href=organicos.pdf>CLICK AQUI</a>
+      </div>
+        
+    </section>
+
+  <script>
+    // JS para asignar archivos seleccionados del selector a los enlaces.
+    // Nota: los objectURLs son temporales para esta sesión del navegador.
+    const filePicker = document.getElementById('filePicker');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Guarda objectURLs para liberar cuando se resetee
+    let currentURLs = [];
+
+    function resetLinks(){
+      // devuelve los href a los valores por defecto (tal como están en el HTML)
+      for(let i=1;i<=12;i++){
+        const a = document.getElementById('link-'+i);
+        const small = document.getElementById('name-'+i);
+        // default placeholder (puedes ajustar estos valores)
+        const defaultPath = a.getAttribute('data-default') || a.href;
+        a.href = defaultPath;
+        a.textContent = defaultPath;
+        small.textContent = 'Archivo: ' + defaultPath.split('/').pop();
+      }
+      // liberar objectURLs previos
+      currentURLs.forEach(u => URL.revokeObjectURL(u));
+      currentURLs = [];
+    }
+
+    // store default hrefs so reset works even after object URLs set
+    for(let i=1;i<=12;i++){
+      const a = document.getElementById('link-'+i);
+      a.setAttribute('data-default', a.getAttribute('href'));
+    }
+
+    filePicker.addEventListener('change', (ev) => {
+      const files = Array.from(ev.target.files).slice(0,12); // máximo 12
+      // liberar previos
+      currentURLs.forEach(u => URL.revokeObjectURL(u));
+      currentURLs = [];
+
+      files.forEach((file, idx) => {
+        const i = idx + 1;
+        const a = document.getElementById('link-'+i);
+        const small = document.getElementById('name-'+i);
+        const objectUrl = URL.createObjectURL(file);
+        currentURLs.push(objectUrl);
+        a.href = objectUrl;
+        a.textContent = file.name;
+        small.textContent = 'Seleccionado: ' + file.type + ' · ' + Math.round(file.size/1024) + ' KB';
+        // abrir en pestaña nueva (target already set)
+      });
+
+      // Si seleccionaste menos de 12 archivos, deja el resto con su href por defecto
+      for(let j = files.length+1; j<=12; j++){
+        const a = document.getElementById('link-'+j);
+        const small = document.getElementById('name-'+j);
+        const defaultPath = a.getAttribute('data-default');
+        a.href = defaultPath;
+        a.textContent = defaultPath;
+        small.textContent = 'Archivo: ' + defaultPath.split('/').pop();
+      }
+    });
+
+    resetBtn.addEventListener('click', (e) => {
+      resetLinks();
+      // also clear input
+      filePicker.value = '';
+    });
+
+    // Inicializar las tarjetas (por si el navegador muestra absolute href)
+    (function init(){
+      for(let i=1;i<=12;i++){
+        const a = document.getElementById('link-'+i);
+        const small = document.getElementById('name-'+i);
+        // mostrar solo el nombre de archivo (no la URL completa)
+        try{
+          const fileName = a.getAttribute('href').split('/').pop();
+          a.textContent = a.getAttribute('href');
+          small.textContent = 'Archivo: ' + fileName;
+        }catch(e){}
+      }
+    })();
+  </script>
+</body>
+</html>
