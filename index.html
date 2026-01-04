@@ -6,292 +6,329 @@
   <title>Materialoteca</title>
   <style>
     :root{
-      --bg:#f5f6f8; /* fondo neutro */
+      --bg:#f0f4f8;
       --card:#ffffff;
-      --muted:#6b7280;
+      --muted:#64748b;
       --accent:#2563eb;
-      --glass: rgba(255,255,255,0.6);
-      --shadow: 0 6px 18px rgba(20,20,30,0.06);
-      --radius:12px;
+      --accent-light:#eff6ff;
+      --glass: rgba(255,255,255,0.75);
+      --shadow: 0 8px 32px rgba(20,20,30,0.08);
+      --radius:16px;
       font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
-    html,body{height:100%}
-    body{
+    html,body{
       margin:0;
-      min-height:100%;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.01)),
-        var(--bg);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px;
-      color:#111827;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      padding:0;
+      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+      color:#1e293b;
+      min-height:100vh;
+    }
+    body{
+      padding:40px 20px; /* Espacio arriba y laterales, ya no centra verticalmente */
     }
 
     .container{
-      width:100%;
-      max-width:960px;
-      background:linear-gradient(180deg,var(--glass), rgba(255,255,255,0.9));
+      max-width:1400px;
+      margin:0 auto; /* Centrado horizontal, pero no vertical */
+      background: var(--glass);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
-      padding:28px;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(16,24,40,0.04);
+      padding:48px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.3);
     }
 
     header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      margin-bottom:18px;
+      text-align:center;
+      margin-bottom:40px;
     }
     h1{
       margin:0;
-      font-size:28px;
-      letter-spacing:-0.02em;
+      font-size:40px;
+      letter-spacing:-0.03em;
+      background: linear-gradient(90deg, #1e40af, #3b82f6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     p.lead{
-      margin:6px 0 0 0;
+      margin:16px 0 0;
       color:var(--muted);
-      font-size:14px;
+      font-size:18px;
     }
 
-    .controls{
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-    .btn{
-      background:var(--accent);
-      color:white;
-      border:none;
-      padding:9px 12px;
-      border-radius:10px;
-      font-weight:600;
-      cursor:pointer;
-      font-size:14px;
-      box-shadow:0 6px 12px rgba(37,99,235,0.12);
-    }
-    .btn.secondary{
-      background:transparent;
-      color:var(--accent);
-      border:1px solid rgba(37,99,235,0.14);
-      box-shadow:none;
+    .intro{
+      max-width:900px;
+      margin:40px auto;
+      padding:28px;
+      background: var(--accent-light);
+      border-left:6px solid var(--accent);
+      border-radius:0 var(--radius) var(--radius) 0;
+      line-height:1.7;
+      font-size:16px;
     }
 
     .grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap:12px;
-      margin-top:18px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap:28px;
+      margin-top:20px;
     }
 
     .card{
       background:var(--card);
-      border-radius:12px;
-      padding:14px;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:0 4px 16px rgba(0,0,0,0.06);
+      transition:all 0.3s ease;
       display:flex;
       flex-direction:column;
-      gap:10px;
-      align-items:flex-start;
-      justify-content:center;
-      transition:transform .14s ease, box-shadow .14s ease;
-      border:1px solid rgba(16,24,40,0.03);
+      height:100%;
     }
-    .card:hover{ transform: translateY(-6px); box-shadow: 0 16px 36px rgba(15,20,40,0.06); }
-    .card h3{ margin:0; font-size:16px; }
-    .card a{
-      color:var(--accent);
-      text-decoration:none;
-      font-weight:600;
-      font-size:14px;
+    .card:hover{
+      transform:translateY(-10px);
+      box-shadow:0 24px 48px rgba(37,99,235,0.18);
     }
-    .card small{ color:var(--muted); }
 
-    footer{
-      margin-top:18px;
+    .card img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+    }
+
+    .card-body{
+      padding:24px;
+      flex-grow:1;
       display:flex;
-      justify-content:space-between;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    .card h3{
+      margin:0;
+      font-size:21px;
+      color:#111827;
+      display:flex;
       align-items:center;
-      gap:12px;
+      gap:10px;
+    }
+
+    .card .desc{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.6;
+      flex-grow:1;
+    }
+
+    .card a{
+      align-self:flex-start;
+      background:var(--accent);
+      color:white;
+      text-decoration:none;
+      padding:11px 22px;
+      border-radius:12px;
+      font-weight:600;
+      transition:all 0.2s;
+    }
+    .card a:hover{
+      background:#1d4ed8;
+      transform:scale(1.05);
+    }
+
+    .card small{
       color:var(--muted);
       font-size:13px;
+      margin-top:auto;
     }
 
-    /* small screens adjustments */
-    @media (max-width:420px){
-      h1{ font-size:22px }
-      .btn{ padding:8px 10px; font-size:13px }
+    footer{
+      margin-top:60px;
+      text-align:center;
+      color:var(--muted);
+      font-size:15px;
+      padding:20px 0;
     }
 
-    input[type="file"]{ display:none; }
+    /* 4 columnas en pantallas grandes */
+    @media (min-width: 1200px){
+      .grid{
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    @media (max-width: 900px){
+      .grid{
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .card img{height:140px;}
+    }
+
+    @media (max-width: 640px){
+      .container{padding:32px 24px;}
+      .grid{grid-template-columns:1fr;}
+      .card img{height:180px;}
+      h1{font-size:34px;}
+    }
   </style>
 </head>
 <body>
   <div class="container" role="main">
     <header>
-      <div>
-        <h1>Materialoteca</h1>
-        <p class="lead"> Selecciona el catalogo de materiales segun su categoria.
-            
-        </p>
-      </div>
-
-      <div class="controls">
-        <!-- Selector oculto de archivos: permite seleccionar hasta 12 archivos y asignarlos a los enlaces -->
+      <h1>Materialoteca</h1>
+      <p class="lead">Catálogo digital de materiales para la construcción</p>
     </header>
 
-    <section class="grid" aria-label="Listado de archivos">
-      <div class="card">
-        <h3>CONCRETO</h3>
-       <a href=concerto1.pdf> CLIC AQUI </a>
-      </div>
-
-      <div class="card">
-        <h3>CONCRETO</h3>
-        <a id="link-2" href=concreto2.pdf>CLIC AQUI</a>
-      </div>
-
-      <div class="card">
-        <h3>CONCRETO</h3>
-        <a id="link-3" href=concreto3.pdf>CLICK AQUI</a>
-       
-      </div>
-
-      <div class="card">
-        <h3>CONCRETO</h3>
-        <a id="link-4" href=concreto4.pdf>CLICK AQUI</a>
-        
-      </div>
-
-      <div class="card">
-        <h3>CONCRETO</h3>
-        <a id="link-5" href=concreto5.pdf>CLICK AQUI</a>
-      </div>
-
-      <div class="card">
-        <h3>CONCRETOS</h3>
-        <a id="link-6" href=concretos.pdf>CLICK AQUI</a>
-      </div>
-
-      <div class="card">
-        <h3>CONCRETOS</h3>
-        <a id="link-7" href=concretos2.pdf>CLICK AQUI</a>
-      </div>
-
-      <div class="card">
-        <h3>PASTAS</h3>
-        <a id="link-8" href=pastas.pdf>CLICK AQUI</a>
-      </div>
-
-      <div class="card">
-        <h3>IMPERMEABILIZANTES</h3>
-        <a id="link-9" href=impermeabilizantes.pdf>CLICK AQUI</a>
-      </div>
-
-      <div class="card">
-        <h3>METALES</h3>
-        <a id="link-10" href=metales.pdf>CLICK AQUI</a>
-      </div>
-
-      <div class="card">
-        <h3>AGLOMERADOS</h3>
-        <a id="link-11" href=aglomerantes.pdf>CLICK AQUI</a>
-      </div>
-
-      <div class="card">
-        <h3>SINTETICOS</h3>
-        <a id="link-12" href=sinteticos.pdf>CLICK AQUI</a>
-      </div>
-
-         <div class="card">
-        <h3>ORGANICOS</h3>
-        <a id="link-9" href=organicos.pdf>CLICK AQUI</a>
-      </div>
-        
+    <section class="intro">
+      <p>Bienvenido a la <strong>Materialoteca</strong>, un recurso digital diseñado para profesionales y estudiantes de la construcción.</p>
+      <p>Aquí encontrarás fichas técnicas y catálogos de los principales materiales utilizados en obra: concretos, pastas, impermeabilizantes, metales, aglomerantes, sintéticos y orgánicos.</p>
+      <p>Haz clic en "Descargar catálogo" de cada categoría para acceder a la información detallada.</p>
     </section>
 
+    <section class="grid" aria-label="Catálogo de materiales">
+      <div class="card">
+        <img src="https://d3ubjvmiw94jq9.cloudfront.net/wp-content/uploads/2023/03/02083150/0000872498_resized_manufacturingprecastcorestruc1022.jpg" alt="Elementos prefabricados de concreto">
+        <div class="card-body">
+          <h3>🛠️ Concreto Prefabricado</h3>
+          <p class="desc">Catálogo de elementos prefabricados: losas, vigas, columnas y paneles. Incluye especificaciones técnicas y ventajas constructivas.</p>
+          <a id="link-1" href="concreto1.pdf">Descargar catálogo</a>
+          <small id="name-1">Archivo: concreto1.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://www.shellyco.com/wp-content/uploads/2013/04/Harbor-House-Themed-Truck.jpg" alt="Camión de concreto premezclado">
+        <div class="card-body">
+          <h3>🚛 Concreto Premezclado</h3>
+          <p class="desc">Información sobre concretos listos para usar, resistencias comunes (f'c 250-500 kg/cm²) y aditivos recomendados.</p>
+          <a id="link-2" href="concreto2.pdf">Descargar catálogo</a>
+          <small id="name-2">Archivo: concreto2.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://www.nbmcw.com/images/87-Concrete/52686-Concrete.webp" alt="Concreto de alto desempeño">
+        <div class="card-body">
+          <h3>🔬 Concreto Especial</h3>
+          <p class="desc">Concretos de alta resistencia, autocompactante, ligero y con fibras. Aplicaciones especiales y ensayos.</p>
+          <a id="link-3" href="concreto3.pdf">Descargar catálogo</a>
+          <small id="name-3">Archivo: concreto3.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://edencrete.com/app/uploads/2022/12/edencrete-admixture-types-2.png" alt="Aditivos para concreto">
+        <div class="card-body">
+          <h3>🧪 Aditivos para Concreto</h3>
+          <p class="desc">Guía de aditivos: plastificantes, acelerantes, retardantes, incorporadores de aire y superplastificantes.</p>
+          <a id="link-4" href="concreto4.pdf">Descargar catálogo</a>
+          <small id="name-4">Archivo: concreto4.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://cdn11.bigcommerce.com/s-mkdskzp0hb/images/stencil/1280x1280/products/122/378/CMU__51374.1649260238.jpg?c=1" alt="Bloques de concreto ligero">
+        <div class="card-body">
+          <h3>🌡️ Concretos Ligeros</h3>
+          <p class="desc">Concretos con densidad reducida usando áridos ligeros o espumantes. Ideal para reducción de peso estructural.</p>
+          <a id="link-5" href="concreto5.pdf">Descargar catálogo</a>
+          <small id="name-5">Archivo: concreto5.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://www.nbmcw.com/images/87-Concrete/52686-Concrete.webp" alt="Concretos especiales">
+        <div class="card-body">
+          <h3>✨ Concretos Especiales</h3>
+          <p class="desc">Concretos coloreados, permeables, de alta durabilidad y resistentes a ambientes agresivos.</p>
+          <a id="link-6" href="concretos.pdf">Descargar catálogo</a>
+          <small id="name-6">Archivo: concretos.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://xtremepolishingsystems.com/cdn/shop/articles/how-to-care-for-stained-and-stamped-concrete-floors-932014.jpg?v=1695654434&width=1920" alt="Piso de concreto decorativo">
+        <div class="card-body">
+          <h3>🎨 Concretos Decorativos</h3>
+          <p class="desc">Acabados expuestos, estampados y pulidos. Técnicas para pisos y elementos arquitectónicos.</p>
+          <a id="link-7" href="concretos2.pdf">Descargar catálogo</a>
+          <small id="name-7">Archivo: concretos2.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://www.ultratechcement.com/content/ultratechcement/in/en/home/for-homebuilders/home-building-explained-single/descriptive-articles/types-of-plastering/_jcr_content/root/container/container_1646056284/teaser.coreimg.jpeg/1711525500916/types-of-plastering-1.jpeg" alt="Aplicación de mortero">
+        <div class="card-body">
+          <h3>🖌️ Pastas y Morteros</h3>
+          <p class="desc">Morteros de pega, repellos, estucos y pastas listas para acabados interiores y exteriores.</p>
+          <a id="link-8" href="pastas.pdf">Descargar catálogo</a>
+          <small id="name-8">Archivo: pastas.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://easyroofsolutions.com/wp-content/uploads/2023/01/waterproofing-membrane-1024x538.png" alt="Membrana impermeabilizante">
+        <div class="card-body">
+          <h3>☔ Impermeabilizantes</h3>
+          <p class="desc">Sistemas asfálticos, acrílicos, cementosos y poliuretanos para techos, losas y muros.</p>
+          <a id="link-9" href="impermeabilizantes.pdf">Descargar catálogo</a>
+          <small id="name-9">Archivo: impermeabilizantes.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/A_bunch_of_rebar.jpg" alt="Varillas de acero">
+        <div class="card-body">
+          <h3>🔩 Metales</h3>
+          <p class="desc">Acero de refuerzo, perfiles estructurales, aluminio y acero inoxidable usados en construcción.</p>
+          <a id="link-10" href="metales.pdf">Descargar catálogo</a>
+          <small id="name-10">Archivo: metales.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://thumbs.dreamstime.com/b/pile-cement-bags-neatly-stacked-construction-project-43593167.jpg" alt="Sacos de cemento">
+        <div class="card-body">
+          <h3>🪨 Aglomerantes</h3>
+          <p class="desc">Cementos, cales, yesos y otros aglomerantes hidráulicos y aéreos con sus normas técnicas.</p>
+          <a id="link-11" href="aglomerantes.pdf">Descargar catálogo</a>
+          <small id="name-11">Archivo: aglomerantes.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://www.goodfishgroup.com/wp-content/uploads/2022/08/PVC-Extrusion-scaled.jpg" alt="Materiales sintéticos">
+        <div class="card-body">
+          <h3>♻️ Materiales Sintéticos</h3>
+          <p class="desc">Plásticos, policarbonatos, PVC, membranas geotextiles y materiales compuestos modernos.</p>
+          <a id="link-12" href="sinteticos.pdf">Descargar catálogo</a>
+          <small id="name-12">Archivo: sinteticos.pdf</small>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://www.azobuild.com/images/Article_Images/ImageForArticle_8682_17170952009902195.jpg" alt="Estructura de bambú y madera">
+        <div class="card-body">
+          <h3>🌿 Materiales Orgánicos</h3>
+          <p class="desc">Maderas, bambú, corcho y otros materiales naturales renovables para construcción sostenible.</p>
+          <a id="link-13" href="organicos.pdf">Descargar catálogo</a>
+          <small id="name-13">Archivo: organicos.pdf</small>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Materialoteca • Recurso educativo y profesional • Actualizado 2026
+    </footer>
+  </div>
+
   <script>
-    // JS para asignar archivos seleccionados del selector a los enlaces.
-    // Nota: los objectURLs son temporales para esta sesión del navegador.
-    const filePicker = document.getElementById('filePicker');
-    const resetBtn = document.getElementById('resetBtn');
-
-    // Guarda objectURLs para liberar cuando se resetee
-    let currentURLs = [];
-
-    function resetLinks(){
-      // devuelve los href a los valores por defecto (tal como están en el HTML)
-      for(let i=1;i<=12;i++){
-        const a = document.getElementById('link-'+i);
-        const small = document.getElementById('name-'+i);
-        // default placeholder (puedes ajustar estos valores)
-        const defaultPath = a.getAttribute('data-default') || a.href;
-        a.href = defaultPath;
-        a.textContent = defaultPath;
-        small.textContent = 'Archivo: ' + defaultPath.split('/').pop();
-      }
-      // liberar objectURLs previos
-      currentURLs.forEach(u => URL.revokeObjectURL(u));
-      currentURLs = [];
-    }
-
-    // store default hrefs so reset works even after object URLs set
-    for(let i=1;i<=12;i++){
-      const a = document.getElementById('link-'+i);
-      a.setAttribute('data-default', a.getAttribute('href'));
-    }
-
-    filePicker.addEventListener('change', (ev) => {
-      const files = Array.from(ev.target.files).slice(0,12); // máximo 12
-      // liberar previos
-      currentURLs.forEach(u => URL.revokeObjectURL(u));
-      currentURLs = [];
-
-      files.forEach((file, idx) => {
-        const i = idx + 1;
-        const a = document.getElementById('link-'+i);
-        const small = document.getElementById('name-'+i);
-        const objectUrl = URL.createObjectURL(file);
-        currentURLs.push(objectUrl);
-        a.href = objectUrl;
-        a.textContent = file.name;
-        small.textContent = 'Seleccionado: ' + file.type + ' · ' + Math.round(file.size/1024) + ' KB';
-        // abrir en pestaña nueva (target already set)
-      });
-
-      // Si seleccionaste menos de 12 archivos, deja el resto con su href por defecto
-      for(let j = files.length+1; j<=12; j++){
-        const a = document.getElementById('link-'+j);
-        const small = document.getElementById('name-'+j);
-        const defaultPath = a.getAttribute('data-default');
-        a.href = defaultPath;
-        a.textContent = defaultPath;
-        small.textContent = 'Archivo: ' + defaultPath.split('/').pop();
-      }
-    });
-
-    resetBtn.addEventListener('click', (e) => {
-      resetLinks();
-      // also clear input
-      filePicker.value = '';
-    });
-
-    // Inicializar las tarjetas (por si el navegador muestra absolute href)
     (function init(){
-      for(let i=1;i<=12;i++){
+      for(let i=1; i<=13; i++){
         const a = document.getElementById('link-'+i);
         const small = document.getElementById('name-'+i);
-        // mostrar solo el nombre de archivo (no la URL completa)
-        try{
+        if(a && small){
           const fileName = a.getAttribute('href').split('/').pop();
-          a.textContent = a.getAttribute('href');
           small.textContent = 'Archivo: ' + fileName;
-        }catch(e){}
+        }
       }
     })();
   </script>
