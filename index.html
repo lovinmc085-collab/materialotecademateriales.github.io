@@ -1,336 +1,530 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Materialoteca</title>
-  <style>
-    :root{
-      --bg:#f0f4f8;
-      --card:#ffffff;
-      --muted:#64748b;
-      --accent:#2563eb;
-      --accent-light:#eff6ff;
-      --glass: rgba(255,255,255,0.75);
-      --shadow: 0 8px 32px rgba(20,20,30,0.08);
-      --radius:16px;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    html,body{
-      margin:0;
-      padding:0;
-      background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-      color:#1e293b;
-      min-height:100vh;
-    }
-    body{
-      padding:40px 20px; /* Espacio arriba y laterales, ya no centra verticalmente */
-    }
-
-    .container{
-      max-width:1400px;
-      margin:0 auto; /* Centrado horizontal, pero no vertical */
-      background: var(--glass);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:48px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.3);
-    }
-
-    header{
-      text-align:center;
-      margin-bottom:40px;
-    }
-    h1{
-      margin:0;
-      font-size:40px;
-      letter-spacing:-0.03em;
-      background: linear-gradient(90deg, #1e40af, #3b82f6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    p.lead{
-      margin:16px 0 0;
-      color:var(--muted);
-      font-size:18px;
-    }
-
-    .intro{
-      max-width:900px;
-      margin:40px auto;
-      padding:28px;
-      background: var(--accent-light);
-      border-left:6px solid var(--accent);
-      border-radius:0 var(--radius) var(--radius) 0;
-      line-height:1.7;
-      font-size:16px;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap:28px;
-      margin-top:20px;
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow:0 4px 16px rgba(0,0,0,0.06);
-      transition:all 0.3s ease;
-      display:flex;
-      flex-direction:column;
-      height:100%;
-    }
-    .card:hover{
-      transform:translateY(-10px);
-      box-shadow:0 24px 48px rgba(37,99,235,0.18);
-    }
-
-    .card img{
-      width:100%;
-      height:160px;
-      object-fit:cover;
-    }
-
-    .card-body{
-      padding:24px;
-      flex-grow:1;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-
-    .card h3{
-      margin:0;
-      font-size:21px;
-      color:#111827;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .card .desc{
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.6;
-      flex-grow:1;
-    }
-
-    .card a{
-      align-self:flex-start;
-      background:var(--accent);
-      color:white;
-      text-decoration:none;
-      padding:11px 22px;
-      border-radius:12px;
-      font-weight:600;
-      transition:all 0.2s;
-    }
-    .card a:hover{
-      background:#1d4ed8;
-      transform:scale(1.05);
-    }
-
-    .card small{
-      color:var(--muted);
-      font-size:13px;
-      margin-top:auto;
-    }
-
-    footer{
-      margin-top:60px;
-      text-align:center;
-      color:var(--muted);
-      font-size:15px;
-      padding:20px 0;
-    }
-
-    /* 4 columnas en pantallas grandes */
-    @media (min-width: 1200px){
-      .grid{
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    @media (max-width: 900px){
-      .grid{
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .card img{height:140px;}
-    }
-
-    @media (max-width: 640px){
-      .container{padding:32px 24px;}
-      .grid{grid-template-columns:1fr;}
-      .card img{height:180px;}
-      h1{font-size:34px;}
-    }
-  </style>
-</head>
-<body>
-  <div class="container" role="main">
-    <header>
-      <h1>Materialoteca</h1>
-      <p class="lead">Catálogo digital de materiales para la construcción</p>
-    </header>
-
-    <section class="intro">
-      <p>Bienvenido a la <strong>Materialoteca</strong>, un recurso digital diseñado para profesionales y estudiantes de la construcción.</p>
-      <p>Aquí encontrarás fichas técnicas y catálogos de los principales materiales utilizados en obra: concretos, pastas, impermeabilizantes, metales, aglomerantes, sintéticos y orgánicos.</p>
-      <p>Haz clic en "Descargar catálogo" de cada categoría para acceder a la información detallada.</p>
-    </section>
-
-    <section class="grid" aria-label="Catálogo de materiales">
-      <div class="card">
-        <img src="https://d3ubjvmiw94jq9.cloudfront.net/wp-content/uploads/2023/03/02083150/0000872498_resized_manufacturingprecastcorestruc1022.jpg" alt="Elementos prefabricados de concreto">
-        <div class="card-body">
-          <h3>🛠️ Concreto Prefabricado</h3>
-          <p class="desc">Catálogo de elementos prefabricados: losas, vigas, columnas y paneles. Incluye especificaciones técnicas y ventajas constructivas.</p>
-          <a id="link-1" href="concreto1.pdf">Descargar catálogo</a>
-          <small id="name-1">Archivo: concreto1.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://www.shellyco.com/wp-content/uploads/2013/04/Harbor-House-Themed-Truck.jpg" alt="Camión de concreto premezclado">
-        <div class="card-body">
-          <h3>🚛 Concreto Premezclado</h3>
-          <p class="desc">Información sobre concretos listos para usar, resistencias comunes (f'c 250-500 kg/cm²) y aditivos recomendados.</p>
-          <a id="link-2" href="concreto2.pdf">Descargar catálogo</a>
-          <small id="name-2">Archivo: concreto2.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://www.nbmcw.com/images/87-Concrete/52686-Concrete.webp" alt="Concreto de alto desempeño">
-        <div class="card-body">
-          <h3>🔬 Concreto Especial</h3>
-          <p class="desc">Concretos de alta resistencia, autocompactante, ligero y con fibras. Aplicaciones especiales y ensayos.</p>
-          <a id="link-3" href="concreto3.pdf">Descargar catálogo</a>
-          <small id="name-3">Archivo: concreto3.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://edencrete.com/app/uploads/2022/12/edencrete-admixture-types-2.png" alt="Aditivos para concreto">
-        <div class="card-body">
-          <h3>🧪 Aditivos para Concreto</h3>
-          <p class="desc">Guía de aditivos: plastificantes, acelerantes, retardantes, incorporadores de aire y superplastificantes.</p>
-          <a id="link-4" href="concreto4.pdf">Descargar catálogo</a>
-          <small id="name-4">Archivo: concreto4.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://cdn11.bigcommerce.com/s-mkdskzp0hb/images/stencil/1280x1280/products/122/378/CMU__51374.1649260238.jpg?c=1" alt="Bloques de concreto ligero">
-        <div class="card-body">
-          <h3>🌡️ Concretos Ligeros</h3>
-          <p class="desc">Concretos con densidad reducida usando áridos ligeros o espumantes. Ideal para reducción de peso estructural.</p>
-          <a id="link-5" href="concreto5.pdf">Descargar catálogo</a>
-          <small id="name-5">Archivo: concreto5.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://www.nbmcw.com/images/87-Concrete/52686-Concrete.webp" alt="Concretos especiales">
-        <div class="card-body">
-          <h3>✨ Concretos Especiales</h3>
-          <p class="desc">Concretos coloreados, permeables, de alta durabilidad y resistentes a ambientes agresivos.</p>
-          <a id="link-6" href="concretos.pdf">Descargar catálogo</a>
-          <small id="name-6">Archivo: concretos.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://xtremepolishingsystems.com/cdn/shop/articles/how-to-care-for-stained-and-stamped-concrete-floors-932014.jpg?v=1695654434&width=1920" alt="Piso de concreto decorativo">
-        <div class="card-body">
-          <h3>🎨 Concretos Decorativos</h3>
-          <p class="desc">Acabados expuestos, estampados y pulidos. Técnicas para pisos y elementos arquitectónicos.</p>
-          <a id="link-7" href="concretos2.pdf">Descargar catálogo</a>
-          <small id="name-7">Archivo: concretos2.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://www.ultratechcement.com/content/ultratechcement/in/en/home/for-homebuilders/home-building-explained-single/descriptive-articles/types-of-plastering/_jcr_content/root/container/container_1646056284/teaser.coreimg.jpeg/1711525500916/types-of-plastering-1.jpeg" alt="Aplicación de mortero">
-        <div class="card-body">
-          <h3>🖌️ Pastas y Morteros</h3>
-          <p class="desc">Morteros de pega, repellos, estucos y pastas listas para acabados interiores y exteriores.</p>
-          <a id="link-8" href="pastas.pdf">Descargar catálogo</a>
-          <small id="name-8">Archivo: pastas.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://easyroofsolutions.com/wp-content/uploads/2023/01/waterproofing-membrane-1024x538.png" alt="Membrana impermeabilizante">
-        <div class="card-body">
-          <h3>☔ Impermeabilizantes</h3>
-          <p class="desc">Sistemas asfálticos, acrílicos, cementosos y poliuretanos para techos, losas y muros.</p>
-          <a id="link-9" href="impermeabilizantes.pdf">Descargar catálogo</a>
-          <small id="name-9">Archivo: impermeabilizantes.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/A_bunch_of_rebar.jpg" alt="Varillas de acero">
-        <div class="card-body">
-          <h3>🔩 Metales</h3>
-          <p class="desc">Acero de refuerzo, perfiles estructurales, aluminio y acero inoxidable usados en construcción.</p>
-          <a id="link-10" href="metales.pdf">Descargar catálogo</a>
-          <small id="name-10">Archivo: metales.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://thumbs.dreamstime.com/b/pile-cement-bags-neatly-stacked-construction-project-43593167.jpg" alt="Sacos de cemento">
-        <div class="card-body">
-          <h3>🪨 Aglomerantes</h3>
-          <p class="desc">Cementos, cales, yesos y otros aglomerantes hidráulicos y aéreos con sus normas técnicas.</p>
-          <a id="link-11" href="aglomerantes.pdf">Descargar catálogo</a>
-          <small id="name-11">Archivo: aglomerantes.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://www.goodfishgroup.com/wp-content/uploads/2022/08/PVC-Extrusion-scaled.jpg" alt="Materiales sintéticos">
-        <div class="card-body">
-          <h3>♻️ Materiales Sintéticos</h3>
-          <p class="desc">Plásticos, policarbonatos, PVC, membranas geotextiles y materiales compuestos modernos.</p>
-          <a id="link-12" href="sinteticos.pdf">Descargar catálogo</a>
-          <small id="name-12">Archivo: sinteticos.pdf</small>
-        </div>
-      </div>
-
-      <div class="card">
-        <img src="https://www.azobuild.com/images/Article_Images/ImageForArticle_8682_17170952009902195.jpg" alt="Estructura de bambú y madera">
-        <div class="card-body">
-          <h3>🌿 Materiales Orgánicos</h3>
-          <p class="desc">Maderas, bambú, corcho y otros materiales naturales renovables para construcción sostenible.</p>
-          <a id="link-13" href="organicos.pdf">Descargar catálogo</a>
-          <small id="name-13">Archivo: organicos.pdf</small>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      Materialoteca • Recurso educativo y profesional • Actualizado 2026
-    </footer>
-  </div>
-
-  <script>
-    (function init(){
-      for(let i=1; i<=13; i++){
-        const a = document.getElementById('link-'+i);
-        const small = document.getElementById('name-'+i);
-        if(a && small){
-          const fileName = a.getAttribute('href').split('/').pop();
-          small.textContent = 'Archivo: ' + fileName;
+ <!doctype html>
+    <html lang="es">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <title>Materialoteca</title>
+      <style>
+        :root{
+          --bg:#f0f4f8;
+          --card:#ffffff;
+          --muted:#64748b;
+          --accent:#2563eb;
+          --accent-light:#eff6ff;
+          --glass: rgba(255,255,255,0.75);
+          --shadow: 0 8px 32px rgba(20,20,30,0.08);
+          --radius:16px;
+          font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
         }
-      }
-    })();
-  </script>
-</body>
-</html>
+        html,body{
+          margin:0;
+          padding:0;
+          background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+          color:#1e293b;
+          min-height:100vh;
+        }
+        body{
+          padding:40px 20px; /* Espacio arriba y laterales, ya no centra verticalmente */
+        }
+    
+        .container{
+          max-width:1400px;
+          margin:0 auto; /* Centrado horizontal, pero no vertical */
+          background: var(--glass);
+          border-radius:var(--radius);
+          box-shadow:var(--shadow);
+          padding:48px;
+          backdrop-filter: blur(10px);
+          border: 1px solid rgba(255,255,255,0.3);
+        }
+    
+        header{
+          text-align:center;
+          margin-bottom:40px;
+        }
+        h1{
+          margin:0;
+          font-size:40px;
+          letter-spacing:-0.03em;
+          background: linear-gradient(90deg, #1e40af, #3b82f6);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        p.lead{
+          margin:16px 0 0;
+          color:var(--muted);
+          font-size:18px;
+        }
+    
+        .intro{
+          max-width:900px;
+          margin:40px auto;
+          padding:28px;
+          background: var(--accent-light);
+          border-left:6px solid var(--accent);
+          border-radius:0 var(--radius) var(--radius) 0;
+          line-height:1.7;
+          font-size:16px;
+        }
+    
+        .grid{
+          display:grid;
+          grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+          gap:28px;
+          margin-top:20px;
+        }
+    
+        .card{
+          background:var(--card);
+          border-radius:var(--radius);
+          overflow:hidden;
+          box-shadow:0 4px 16px rgba(0,0,0,0.06);
+          transition:all 0.3s ease;
+          display:flex;
+          flex-direction:column;
+          height:100%;
+        }
+        .card:hover{
+          transform:translateY(-10px);
+          box-shadow:0 24px 48px rgba(37,99,235,0.18);
+        }
+    
+        .card img{
+          width:100%;
+          height:160px;
+          object-fit:cover;
+        }
+    
+        .card-body{
+          padding:24px;
+          flex-grow:1;
+          display:flex;
+          flex-direction:column;
+          gap:14px;
+        }
+    
+        .card h3{
+          margin:0;
+          font-size:21px;
+          color:#111827;
+          display:flex;
+          align-items:center;
+          gap:10px;
+        }
+    
+        .card .desc{
+          color:var(--muted);
+          font-size:15px;
+          line-height:1.6;
+          flex-grow:1;
+        }
+    
+        .card a{
+          align-self:flex-start;
+          background:var(--accent);
+          color:white;
+          text-decoration:none;
+          padding:11px 22px;
+          border-radius:12px;
+          font-weight:600;
+          transition:all 0.2s;
+        }
+        .card a:hover{
+          background:#1d4ed8;
+          transform:scale(1.05);
+        }
+    
+        .card small{
+          color:var(--muted);
+          font-size:13px;
+          margin-top:auto;
+        }
+    
+        footer{
+          margin-top:60px;
+          text-align:center;
+          color:var(--muted);
+          font-size:15px;
+          padding:20px 0;
+        }
+    
+        /* 4 columnas en pantallas grandes */
+        @media (min-width: 1200px){
+          .grid{
+            grid-template-columns: repeat(4, 1fr);
+          }
+        }
+    
+        @media (max-width: 900px){
+          .grid{
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .card img{height:140px;}
+        }
+    
+        @media (max-width: 640px){
+          .container{padding:32px 24px;}
+          .grid{grid-template-columns:1fr;}
+          .card img{height:180px;}
+          h1{font-size:34px;}
+        }
+          .mapa-seccion {
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    .mapa-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1.5px solid var(--accent);
+      border-radius: 24px;
+    }
+
+    .columna-mapa {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mapa-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: white;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      font-size: 14px;
+    }
+
+    .mapa-item span {
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    .mapa-fichas {
+      background: #fef08a; /* Color amarillo de la imagen */
+      color: #854d0e;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .mapa-titulo {
+      text-align: center;
+      color: var(--accent);
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    .box-rojo {
+      border: 2px solid #ef4444;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 900px) {
+      .mapa-grid { grid-template-columns: 1fr; }
+    }
+      </style>
+    </head>
+    <body>
+      <div class="container" role="main">
+        <header>
+          <h1>Materialoteca</h1>
+          <p class="lead">Catálogo digital de materiales para la construcción</p>
+        </header>
+    
+        <section class="intro">
+          <p>Bienvenido a la <strong>Materialoteca</strong>, un recurso digital diseñado para profesionales y estudiantes de la construcción.</p>
+          <p>Aquí encontrarás fichas técnicas y catálogos de los principales materiales utilizados en obra.</p>
+          <p>Pero antes de adentrarnos en esta gran materialoteca recordemos ¿Que son los materiales?
+          Son elementos constructivos con los que se lleva acabo la realizacion de un proyecto.</p>
+        <p>Hay algunos que son para interiores y otros que oresentan gran resistencia a la intemperie por lo tanto se puede utilizar para exteriores.</p>    
+        </section>
+
+     <section class="mapa-seccion">
+      <div class="mapa-grid">
+        <div class="columna-mapa">
+          <div class="mapa-titulo">Pétreos y Concreto</div>
+          <div class="mapa-item"><span>Pétreos Naturales</span> <div class="mapa-fichas"></div></div>
+          <div class="mapa-item"><span>Pétreos Art. Cerámicos</span> <div class="mapa-fichas"></div></div>
+          <div class="mapa-item"><span>Pétreos Art. Vidrios</span> <div class="mapa-fichas"></div></div>
+          <div class="mapa-item"><span>Derivados de Concreto</span> <div class="mapa-fichas"></div></div>
+        </div>
+
+        <div class="columna-mapa">
+          <div class="mapa-titulo">Aglomerantes y Mezclas</div>
+          <div class="mapa-item"><span>Arenas y Gravas</span> <div class="mapa-fichas"></div></div>
+          <div class="mapa-item"><span>Tipos de Concretos</span> <div class="mapa-fichas"></div></div>
+          <div class="mapa-item"><span>Morteros y Pastas</span> <div class="mapa-fichas"></div></div>
+          <div class="mapa-item"><span>Metalicos</span> <div class="mapa-fichas"></div></div>
+          <div class="mapa-item"><span>Sintéticos</span> <div class="mapa-fichas"></div></div>
+        </div>
+
+        <div class="columna-mapa">
+          <div class="mapa-titulo">Dosificación y Otros</div>
+          <div class="mapa-item"><span>Dosificación</span> <div class="mapa-fichas"></div></div>
+          <div class="mapa-item"><span>Orgánicos</span> <div class="mapa-fichas"></div></div>
+          
+        
+            <div class="mapa-item" style="border-left-color: #ef4444;"><span>Oficios</span> <div class="mapa-fichas"></div></div>
+          </div>
+        </div>
+      </div>
+          
+        <section class="grid" aria-label="Catálogo de materiales">
+          <div class="card">
+            <img src="https://d3ubjvmiw94jq9.cloudfront.net/wp-content/uploads/2023/03/02083150/0000872498_resized_manufacturingprecastcorestruc1022.jpg" alt="Elementos prefabricados de concreto">
+            <div class="card-body">
+              <h3>🛠️ Concreto Prefabricado</h3>
+              <p class="desc">Catálogo de elementos prefabricados: losas, vigas, columnas y paneles. Incluye especificaciones técnicas y ventajas constructivas.</p>
+              <a id="link-1" href="concreto1.pdf">Descargar catálogo</a>
+              <small id="name-1">Archivo: concreto1.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://www.shellyco.com/wp-content/uploads/2013/04/Harbor-House-Themed-Truck.jpg" alt="Camión de concreto premezclado">
+            <div class="card-body">
+              <h3>🚛 Concreto Premezclado</h3>
+              <p class="desc">Información sobre concretos listos para usar, resistencias comunes (f'c 250-500 kg/cm²) y aditivos recomendados.</p>
+              <a id="link-2" href="concreto2.pdf">Descargar catálogo</a>
+              <small id="name-2">Archivo: concreto2.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://www.nbmcw.com/images/87-Concrete/52686-Concrete.webp" alt="Concreto de alto desempeño">
+            <div class="card-body">
+              <h3>🔬 Concreto Especial</h3>
+              <p class="desc">Concretos de alta resistencia, autocompactante, ligero y con fibras. Aplicaciones especiales y ensayos.</p>
+              <a id="link-3" href="concreto3.pdf">Descargar catálogo</a>
+              <small id="name-3">Archivo: concreto3.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://edencrete.com/app/uploads/2022/12/edencrete-admixture-types-2.png" alt="Aditivos para concreto">
+            <div class="card-body">
+              <h3>🧪 Aditivos para Concreto</h3>
+              <p class="desc">Guía de aditivos: plastificantes, acelerantes, retardantes, incorporadores de aire y superplastificantes.</p>
+              <a id="link-4" href="concreto4.pdf">Descargar catálogo</a>
+              <small id="name-4">Archivo: concreto4.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://cdn11.bigcommerce.com/s-mkdskzp0hb/images/stencil/1280x1280/products/122/378/CMU__51374.1649260238.jpg?c=1" alt="Bloques de concreto ligero">
+            <div class="card-body">
+              <h3>🌡️ Concretos Ligeros</h3>
+              <p class="desc">Concretos con densidad reducida usando áridos ligeros o espumantes. Ideal para reducción de peso estructural.</p>
+              <a id="link-5" href="concreto5.pdf">Descargar catálogo</a>
+              <small id="name-5">Archivo: concreto5.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://www.nbmcw.com/images/87-Concrete/52686-Concrete.webp" alt="Concretos especiales">
+            <div class="card-body">
+              <h3>✨ Concretos Especiales</h3>
+              <p class="desc">Concretos coloreados, permeables, de alta durabilidad y resistentes a ambientes agresivos.</p>
+              <a id="link-6" href="concretos.pdf">Descargar catálogo</a>
+              <small id="name-6">Archivo: concretos.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://xtremepolishingsystems.com/cdn/shop/articles/how-to-care-for-stained-and-stamped-concrete-floors-932014.jpg?v=1695654434&width=1920" alt="Piso de concreto decorativo">
+            <div class="card-body">
+              <h3>🎨 Concretos Decorativos</h3>
+              <p class="desc">Acabados expuestos, estampados y pulidos. Técnicas para pisos y elementos arquitectónicos.</p>
+              <a id="link-7" href="concretos2.pdf">Descargar catálogo</a>
+              <small id="name-7">Archivo: concretos2.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://www.ultratechcement.com/content/ultratechcement/in/en/home/for-homebuilders/home-building-explained-single/descriptive-articles/types-of-plastering/_jcr_content/root/container/container_1646056284/teaser.coreimg.jpeg/1711525500916/types-of-plastering-1.jpeg" alt="Aplicación de mortero">
+            <div class="card-body">
+              <h3>🖌️ Pastas y Morteros</h3>
+              <p class="desc">Morteros de pega, repellos, estucos y pastas listas para acabados interiores y exteriores.</p>
+              <a id="link-8" href="pastas.pdf">Descargar catálogo</a>
+              <small id="name-8">Archivo: pastas.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://easyroofsolutions.com/wp-content/uploads/2023/01/waterproofing-membrane-1024x538.png" alt="Membrana impermeabilizante">
+            <div class="card-body">
+              <h3>☔ Impermeabilizantes</h3>
+              <p class="desc">Sistemas asfálticos, acrílicos, cementosos y poliuretanos para techos, losas y muros.</p>
+              <a id="link-9" href="impermeabilizantes.pdf">Descargar catálogo</a>
+              <small id="name-9">Archivo: impermeabilizantes.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/A_bunch_of_rebar.jpg" alt="Varillas de acero">
+            <div class="card-body">
+              <h3>🔩 Metales</h3>
+              <p class="desc">Acero de refuerzo, perfiles estructurales, aluminio y acero inoxidable usados en construcción.</p>
+              <a id="link-10" href="metales.pdf">Descargar catálogo</a>
+              <small id="name-10">Archivo: metales.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://thumbs.dreamstime.com/b/pile-cement-bags-neatly-stacked-construction-project-43593167.jpg" alt="Sacos de cemento">
+            <div class="card-body">
+              <h3>🪨 Aglomerantes</h3>
+              <p class="desc">Cementos, cales, yesos y otros aglomerantes hidráulicos y aéreos con sus normas técnicas.</p>
+              <a id="link-11" href="aglomerantes.pdf">Descargar catálogo</a>
+              <small id="name-11">Archivo: aglomerantes.pdf</small>
+            </div>
+          </div>
+
+            <div class="card">
+            <img src=grava.jpeg>
+            <div class="card-body">
+              <h3> 🪨 Grava    </h3>
+              <p class="desc">Se especializa en los diferentes tipos de grava (fina, media y gruesa) y otros materiales como el tabicón.</p>
+              <a id="link-13" href="aglomerantes2.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: aglomerantes2.pdf</small>
+            </div>
+          </div>
+    
+          <div class="card">
+            <img src="https://www.azobuild.com/images/Article_Images/ImageForArticle_8682_17170952009902195.jpg" alt="Estructura de bambú y madera">
+            <div class="card-body">
+              <h3>🌿 Materiales Orgánicos</h3>
+              <p class="desc">Maderas, bambú, corcho y otros materiales naturales renovables para construcción sostenible.</p>
+              <a id="link-13" href="organicos.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: organicos.pdf</small>
+            </div>
+          </div>
+
+            
+    <div class="card">
+            <img src="https://www.goodfishgroup.com/wp-content/uploads/2022/08/PVC-Extrusion-scaled.jpg" alt="Materiales sintéticos">
+            <div class="card-body">
+              <h3>♻️ Materiales Sintéticos</h3>
+              <p class="desc">Plásticos, policarbonatos, PVC, membranas geotextiles y materiales compuestos modernos.</p>
+              <a id="link-12" href="SINTETICOS.pdf">Descargar catálogo</a>
+              <small id="name-12">Archivo: sinteticos.pdf</small>
+            </div>
+          </div>
+    
+             <div class="card">
+            <img src=marmol.jpeg>
+            <div class="card-body">
+              <h3>Marmol.</h3>
+              <p class="desc">Detalla su apariencia elegante para interiores, medidas comerciales y la necesidad de mantenimiento debido a su porosidad y sensibilidad a ácidos.</p>
+              <a id="link-13" href="MARMOL.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo:MARMOL.pdf</small>
+            </div>
+          </div>
+    
+            
+     <div class="card">
+            <img src=laja.jpeg>
+            <div class="card-body">
+              <h3>Laja</h3>
+              <p class="desc">Se destaca su uso en fachadas rústicas y pisos exteriores por su alta resistencia a la intemperie y su textura irregular.</p>
+              <a id="link-13" href="LAJA.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: LAJA.pdf</small>
+            </div>
+          </div>
+    
+             <div class="card">
+            <img src=piedrin.jpeg>
+            <div class="card-body">
+              <h3>Piedrines</h3>
+              <p class="desc">Incluye opciones como el Piedrín Arqueológico y el Dorado Tepeji, ideales para senderos, jardinería y acabados decorativos en muros.</p>
+              <a id="link-13" href="PIEDRINES.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: PIEDRINES.pdf</small>
+            </div>
+          </div>
+            
+     <div class="card">
+            <img src=rustico.jpeg>
+            <div class="card-body">
+              <h3>Materiales rusticos</h3>
+              <p class="desc">Resalta su uso en proyectos arquitectónicos que buscan una estética rústica o de lujo.</p>
+              <a id="link-13" href="RUSTICO E IMPORTADO.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: RUSTICO E IMPORTADO.pdf</small>
+            </div>
+          </div>
+    
+             <div class="card">
+            <img src=canteras.jpeg>
+            <div class="card-body">
+              <h3>Canteras</h3>
+              <p class="desc">Explica su versatilidad para ser labradas en columnas o molduras y su gran valor estético en la arquitectura tradicional y contemporánea.</p>
+              <a id="link-13" href="CANTERAS.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: CANTERAS.pdf</small>
+            </div>
+          </div>
+            
+     <div class="card">
+            <img src=dosificacion.jpeg>
+            <div class="card-body">
+              <h3>Dosificacion</h3>
+              <p class="desc">Explica las propiedades, ventajas y desventajas de insumos esenciales como el cemento, la arena, la grava y el ladrillo o barro block.</p>
+              <a id="link-13" href="dosificacion.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: dosificacion.pdf</small>
+            </div>
+          </div>
+    
+             <div class="card">
+            <img src=oficio1.jpeg>
+            <div class="card-body">
+              <h3>Oficios operativos</h3>
+              <p class="desc">Se enfoca en los oficios operativos de la construcción. Describe perfiles como el de topógrafo, fierrero, albañil, carpintero de obra negra, herrero, soldador, electricista, plomero y yesero, detallando sus funciones y herramientas.</p>
+              <a id="link-13" href="oficios.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: oficios.pdf</small>
+            </div>
+          </div>
+    
+             <div class="card">
+            <img src=oficio2.jpeg>
+            <div class="card-body">
+              <h3>Oficios profesionales</h3>
+              <p class="desc">Trata sobre los roles profesionales y de supervisión. Incluye descripciones de arquitectos, ingenieros civiles, Directores Responsables de Obra (DRO), corresponsables estructurales y de instalaciones, así como supervisores y proyectistas.</p>
+              <a id="link-13" href="oficios2.pdf">Descargar catálogo</a>
+              <small id="name-13">Archivo: oficios2.pdf</small>
+            </div>
+          </div>
+    
+    
+        </section>
+    
+        <footer>
+          Materialoteca • Recurso educativo y profesional • Actualizado 2026
+        </footer>
+      </div>
+    
+      <script>
+        (function init(){
+          for(let i=1; i<=13; i++){
+            const a = document.getElementById('link-'+i);
+            const small = document.getElementById('name-'+i);
+            if(a && small){
+              const fileName = a.getAttribute('href').split('/').pop();
+              small.textContent = 'Archivo: ' + fileName;
+            }
+          }
+        })();
+      </script>
+    </body>
+    </html>
